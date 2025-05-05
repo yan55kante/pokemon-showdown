@@ -1,1 +1,1 @@
-web: node pokemon-showdown $PORT
+start: node pokemon-showdown
