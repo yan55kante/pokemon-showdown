@@ -4701,4 +4701,20 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		battle: { trunc: Math.trunc },
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
+	{
+  name: "[Gen 4] Nacho Cuernoo",
+  desc: "Doble batalla 2v2 con 3 Pokémon por jugador (sin restricciones)",
+  mod: 'gen4',
+  gameType: 'doubles',
+  teamLength: {
+    validate: [6, 6], // 3 por jugador en 2v2 (3x2 = 6 total por equipo)
+    battle: 6,
+  },
+  rated: false,
+  ruleset: ['Standard Doubles'],
+  banlist: [], // sin baneos
+  onBegin() {
+    this.add(`|raw|<h2>Formato Nacho Cuernoo - ¡2v2 Doble!</h2><p>Cada jugador controla 3 Pokémon</p>`);
+  },
+},
 ];
