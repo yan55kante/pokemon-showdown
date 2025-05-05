@@ -4717,4 +4717,3 @@ export const Formats: import('../sim/dex-formats').FormatList = [
     this.add(`|raw|<h2>Formato Nacho Cuernoo - ¡2v2 Doble!</h2><p>Cada jugador controla 3 Pokémon</p>`);
   },
 },
-];
