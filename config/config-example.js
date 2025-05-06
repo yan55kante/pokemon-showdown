@@ -1,4 +1,5 @@
 'use strict';
+exports.serverName = 'Nacho Cuernoo';
 
 /**
  * The server port - the port to run Pokemon Showdown under
@@ -61,7 +62,10 @@ exports.wsdeflate = {
  *  something.
  * @type {{port: number, options: {key: string, cert: string}} | null}
  */
-exports.ssl = null;
+exports.ssl = exports.ssl = {
+  key: './ssl/key.pem',
+  cert: './ssl/cert.pem',
+};
 
 /*
 // example:

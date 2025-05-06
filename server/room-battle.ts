@@ -518,10 +518,12 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 	active = false;
 	replaySaved: boolean | 'auto' = false;
 	forcedSettings: { modchat?: string | null, privacy?: string | null } = {};
-	p1: RoomBattlePlayer = null!;
-	p2: RoomBattlePlayer = null!;
-	p3: RoomBattlePlayer = null!;
-	p4: RoomBattlePlayer = null!;
+	this.players = {
+  p1: new Side(this, 'p1', options.p1),
+  p2: new Side(this, 'p2', options.p2),
+  p3: new Side(this, 'p3', options.p3),
+  p4: new Side(this, 'p4', options.p4),
+};
 	inviteOnlySetter: ID | null = null;
 	logData: AnyObject | null = null;
 	endType: 'forfeit' | 'forced' | 'normal' = 'normal';
@@ -613,7 +615,21 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			user.popup(`Your battle is currently paused, so you cannot move right now.`);
 			return;
 		}
+		const battle = new RoomBattle(room, 'gen4custom2v2', {
+  p1: user1,
+  p2: user2,
+  p3: user3,
+  p4: user4,
+});
 		const player = this.playerTable[user.id];
+		start() {
+  const teams = [
+    [...this.p1.team, ...this.p2.team], // equipo 1 (p1 y p2)
+    [...this.p3.team, ...this.p4.team], // equipo 2 (p3 y p4)
+  ];
+  this.battle = new Battle({format: this.formatid});
+  this.battle.loadTeams(teams);
+}
 		const [choice, rqid] = data.split('|', 2);
 		if (!player) return;
 		const request = player.request;
@@ -1250,10 +1266,10 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 		}
 		this.playerTable = {};
 		this.players = [];
-		this.p1 = null!;
-		this.p2 = null!;
-		this.p3 = null!;
-		this.p4 = null!;
+		this.p1 = this.players.p1;
+      this.p2 = this.players.p2;
+      this.p3 = this.players.p3;
+      this.p4 = this.players.p4;
 
 		void this.stream.destroy();
 		if (this.active) {

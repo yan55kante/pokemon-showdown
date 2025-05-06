@@ -18,6 +18,17 @@ import { Dex, toID } from './dex';
 import { Teams } from './teams';
 import { Field } from './field';
 import { Pokemon, type EffectState, RESTORATIVE_BERRIES } from './pokemon';
+interface Player {
+  id: string;
+  name: string;
+  pokemon: Pokemon[];
+  pendingDecisions: any[];
+}
+
+interface Team {
+  players: Player[];
+  active: Pokemon[];
+}
 import { PRNG, type PRNGSeed } from './prng';
 import { type MoveRequest, type ChoiceRequest, Side } from './side';
 import { State } from './state';

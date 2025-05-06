@@ -9,6 +9,16 @@
 
 import { Dex, toID } from './dex';
 import type { PRNG, PRNGSeed } from './prng';
+// sim/team.ts
+import {Player} from './battle';
+export class Team {
+  players: Player[];
+  active: Pokemon[];
+  constructor(players: Player[]) {
+    this.players = players;
+    this.active = [];
+  }
+}
 
 export interface PokemonSet {
 	/**
